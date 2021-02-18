@@ -33,4 +33,8 @@ class Post extends Model
     public function infoPost(){
         return $this->hasOne('App\InfoPost');
     }
+
+    public function comment(){
+        return $this->hasMany('App\Comment');
+    }
 }

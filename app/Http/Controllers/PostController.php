@@ -17,4 +17,9 @@ class PostController extends Controller
         //dd($post);
         return view('home', compact('post'));
     }
+    public function show(Post $post)
+    {   
+
+      return view('posts-folder.show', compact('post'));
+    }
 }

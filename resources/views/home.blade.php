@@ -34,14 +34,20 @@
                 <td> {{ $item->img_path}} </td>
                 <td> {{ $item->publication_date}} </td>
                 <td><a class="btn btn-outline-dark" href="{{ route('post.show', $item->id)}}"> <i class="fas fa-search-plus"></i> </a></td>
-
+                <td>
+                    <form action="{{route('post.destroy', $item->id)}}" method="post" onsubmit="return confirm('Procedere alla cancellazione?')">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-outline-dark"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </td>
                     
             </tr>
             @endforeach
-                                    
             
         </tbody>
-     </table>
+    </table>
+    <a href="{{route('post.create')}}" class="btn btn-secondary">Nuovo Post</a>                       
     
 </div>
 @endsection

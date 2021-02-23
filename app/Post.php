@@ -30,15 +30,24 @@ class Post extends Model
     ];
 
     // relationship
+
+    // one to one info post
     public function infoPost(){
         return $this->hasOne('App\InfoPost');
     }
 
+    // one to many comment
     public function comment(){
         return $this->hasMany('App\Comment');
     }
 
+    // many to many tags
     public function tags(){
         return $this->belongsToMany('App\Tag');
+    }
+
+    // many to many image
+    public function images(){
+        return $this->belongsToMany('App\Image', 'post_image');
     }
 }

@@ -2,6 +2,12 @@
 
 @section('main')
 <div class="container pt-5">
+    @if (session('message'))
+        <div class="alert {{session('class')}}">
+            {{session('message')}}
+        </div>
+      
+    @endif
     <table class="table table-striped  ">
         <thead>
             <tr>
@@ -12,6 +18,7 @@
                 <th scope="col"> Autore </th>
                 <th scope="col"> Immagine </th>
                 <th scope="col"> data di pubblicazione </th>
+                <th></th>
                 <th></th>
                 
             </tr>
@@ -34,6 +41,9 @@
                 <td> {{ $item->img_path}} </td>
                 <td> {{ $item->publication_date}} </td>
                 <td><a class="btn btn-outline-dark" href="{{ route('post.show', $item->id)}}"> <i class="fas fa-search-plus"></i> </a></td>
+                <td>
+                    <a class="btn btn-outline-dark" href="{{ route('post.edit', $item->id)}}"><i class="fas fa-pencil-alt"></i></a>
+                </td>
                 <td>
                     <form action="{{route('post.destroy', $item->id)}}" method="post" onsubmit="return confirm('Procedere alla cancellazione?')">
                       @csrf

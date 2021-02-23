@@ -2,8 +2,9 @@
 
 @section('main')
 <div class="container">
-  
-    <h1>Nuovo Post</h1>
+  <div >
+
+    <h1>Modifica Post</h1>
     @if ($errors->any())
       <div class="alert alert-danger">
         <ul>
@@ -13,38 +14,39 @@
         </ul>
       </div>
     @endif
-    <form action="{{route('post.store')}}" method="post">
+    <form action="{{route('post.update', $post )}}" method="post">
       @csrf
-      @method('POST')
+      
+      @method('PUT')
       <div class="form-group">
         <label for="title">Titolo</label>
-        <input type="text" class="form-control" id="title"  placeholder="Titolo del post" name="title" value="{{old('title')}}">
+        <input type="text" class="form-control" id="title"  placeholder="Titolo del post" name="title" value="{{$post->title}}">
         <small lass="form-text text-muted">Titolo del post</small>
       </div>
       <div class="form-group">
         <label for="subtitle">Sottotitolo</label>
-        <input type="text" class="form-control" id="subtitle"  placeholder="sottotitolo" name="subtitle" value="{{old('subtitle')}}">
+        <input type="text" class="form-control" id="subtitle"  placeholder="sottotitolo" name="subtitle" value="{{$post->subtitle}}">
         <small lass="form-text text-muted">Sottotiolo del post</small>
       </div>
       <div class="form-group">
         <label for="text">Testo</label>
-        <input type="text" class="form-control" id="text"  placeholder="testo" name="text" value="{{old('text')}} ">
+        <input type="text" class="form-control" id="text"  placeholder="testo" name="text" value="{{$post->text}} ">
         <small lass="form-text text-muted">Testo del post</small>
       </div>
       <div class="form-group">
         <label for="author">Autore del post</label>
-        <input type="text" class="form-control" id="author"  placeholder="Autore del post" name="author" value="{{old('author')}}">
+        <input type="text" class="form-control" id="author"  placeholder="Autore del post" name="author" value="{{$post->author}}">
     
       </div>
       <div class="form-group">
         <label for="img_path">Url immagine</label>
-        <input type="text" class="form-control" id="img_path"  placeholder="Url immagine" name="img_path" value="{{old('img_path')}}">
+        <input type="text" class="form-control" id="img_path"  placeholder="Url immagine" name="img_path" value="{{$post->img_path}}">
     
       </div>
       <div class="form-group row">
         <label for="publication_date" class="col-2 col-form-label">Data </label>
         <div class="col-10">
-          <input class="form-control" type="date" value="2011-08-19" id="publication_date" name="publication_date" value="{{old('publication_date')}}">
+          <input class="form-control" type="date" value="2011-08-19" id="publication_date" name="publication_date" value="{{$post->publication_date}}">
         </div>
       </div>
       @foreach ($tags as $tag)
@@ -55,12 +57,12 @@
           
           <label class="form-check-label" for="tag-{{ $tag->id}}">{{ $tag->name}}</label>
         </div>
-
+  
       </div>          
       @endforeach
-     
-      <button type="submit" class="btn btn-primary">Aggiungi</button>
-      <a href="{{ route('post.index')}}"  class="btn btn-outline-dark">Torna alla lista</a>
+      <button type="submit" class="btn btn-primary">Modifica post</button>
+    <a href="{{ route('post.index')}}"  class="btn btn-outline-dark">Torna alla Home</a>
     </form>
-  @endsection
+  </div>
 </div>
+@endsection
